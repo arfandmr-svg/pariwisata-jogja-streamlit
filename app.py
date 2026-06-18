@@ -177,7 +177,7 @@ with tab4:
     with col_info1:
         st.info("""
         #### Klaster 0 (Potensial / Hidden Gem)
-        * **Karakteristik:** Memiliki Rating Tinggi (sangat disukai pengunjung yang datang) namun dengan Jumlah Ulasan yang Relatif Sedikit/Sedang.**.
+        * **Karakteristik:** Memiliki Rating Tinggi (sangat disukai pengunjung yang datang) namun dengan Jumlah Ulasan yang Relatif Sedikit/Sedang.
         * **Logika:** Objek wisata diletakkan di klaster ini karena secara matematis posisinya berada di area koordinat "kepuasan tinggi namun eksposur rendah". Tempat ini memiliki potensi besar untuk dikembangkan lebih lanjut karena kualitasnya sudah diakui, namun belum diketahui oleh wisatawan skala luas.
         * **Rekomendasi Strategis:** Wajib dijadikan prioritas utama promosi digital iklan daerah oleh Pemda DIY agar kunjungan merata.
         """)
