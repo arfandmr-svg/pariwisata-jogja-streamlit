@@ -12,8 +12,8 @@ st.set_page_config(page_title="Advanced Dashboard Pariwisata DIY", layout="wide"
 # --- 2. JUDUL & DESKRIPSI ---
 st.title("Dashboard Segmentasi Wisata DIY")
 st.markdown("""
-Aplikasi web ini menggunakan algoritma **K-Means Clustering** untuk mengelompokkan objek wisata di Daerah Istimewa Yogyakarta secara otomatis. 
-Dilengkapi dengan evaluasi matematis *Elbow Method* dan *Silhouette Coefficient* untuk penjaminan mutu klaster.
+Dashboard ini menggunakan algoritma **K-Means Clustering** untuk mengelompokkan objek wisata di Daerah Istimewa Yogyakarta secara otomatis. 
+Dilengkapi dengan metode evaluasi *Elbow Method* dan *Silhouette Coefficient* untuk menentukan klaster.
 """)
 st.divider()
 
@@ -114,7 +114,7 @@ with tab1:
 # TAB 2: EKSPERIMEN VALIDASI (Poin Plus Nilai Akademis)
 with tab2:
     st.subheader("Pembuktian Ilmiah Penentuan Jumlah Klaster (K)")
-    st.markdown("Bagian ini menampilkan proses eksperimen pencarian jumlah kelompok terbaik menggunakan metode matematis.")
+    st.markdown("Bagian ini menampilkan proses penentuan jumlah klaster terbaik menggunakan metode matematis.")
     
     # Hitung WCSS dan Silhouette secara dinamis untuk K=2 sampai K=6
     wcss = []
@@ -138,7 +138,7 @@ with tab2:
         ax_el.set_title('Mencari Titik Siku (Elbow)')
         ax_el.grid(True)
         st.pyplot(fig_el)
-        st.caption("Analisis: Sudut siku mulai melandai secara tajam pada K=2, menandakan pembagian kelompok sudah optimal.")
+        st.caption("Analisis: Sudut siku mulai melandai secara tajam pada K=2, menandakan pembagian klaster sudah optimal.")
         
     with col_exp2:
         st.markdown("**2. Silhouette Coefficient (Evaluasi Kerapatan)**")
@@ -149,12 +149,12 @@ with tab2:
         ax_sil.set_title('Mencari Nilai Tertinggi')
         ax_sil.grid(True)
         st.pyplot(fig_sil)
-        st.caption(f"Analisis: Skor tertinggi didapatkan pada K=2 (Skor: ~{max(silhouette_scores):.2f}), membuktikan K=2 secara matematis adalah yang terbaik.")
+        st.caption(f"Analisis: Skor tertinggi didapatkan pada K=2 (Skor: ~{max(silhouette_scores):.2f}), membuktikan K=2 adalah yang terbaik atau unggul.")
 
 # TAB 3: DATA EKSPLORASI & DOWNLOAD (Fitur Industri)
 with tab3:
     st.subheader("Eksplorasi Seluruh Dataset Hasil Klaster")
-    st.markdown("Anda dapat mencari, mengurutkan data, atau mengunduh dataset yang sudah diberi label oleh Machine Learning di bawah ini.")
+    st.markdown("Bisa melakukan pencarian, mengurutkan data, atau mengunduh dataset yang sudah diperhiyungkan menggunakan algoritma Machine Learning di bawah ini.")
     
     # Fitur Tambahan 2: Tombol Download CSV
     csv_data = df.to_csv(index=False).encode('utf-8')
@@ -171,18 +171,20 @@ with tab3:
 # TAB 4: KESIMPULAN
 with tab4:
     st.subheader("Penjelasan Karakteristik Klaster")
+    st.markdown("Algoritma **Machine Learning K-Means** mengelompokkan objek wisata di DIY ke dalam 2 klaster utama berdasarkan kombinasi dua indikator kinerja Kualitas Pelayanan (Rating) dan Tingkat Popularitas (Jumlah Ulasan).")
+    st.markdown("Sebelum dikelompokkan, kedua data tersebut disamakan bobotnya menggunakan StandardScaler agar penilaiannya adil. Aturan penentuannya adalah sebagai berikut:")
     col_info1, col_info2 = st.columns(2)
     with col_info1:
         st.info("""
         #### Klaster 0 (Potensial / Hidden Gem)
-        * **Karakteristik:** Memiliki **Rating Tinggi** namun **Jumlah Ulasan Sedikit**.
-        * **Kondisi Lapangan:** Tempat berkualitas prima tetapi belum terekspos luas di Google Maps.
+        * **Karakteristik:** Memiliki Rating Tinggi (sangat disukai pengunjung yang datang) namun dengan Jumlah Ulasan yang Relatif Sedikit/Sedang.**.
+        * **Logika:** Objek wisata diletakkan di klaster ini karena secara matematis posisinya berada di area koordinat "kepuasan tinggi namun eksposur rendah". Tempat ini memiliki potensi besar untuk dikembangkan lebih lanjut karena kualitasnya sudah diakui, namun belum diketahui oleh wisatawan skala luas.
         * **Rekomendasi Strategis:** Wajib dijadikan prioritas utama promosi digital iklan daerah oleh Pemda DIY agar kunjungan merata.
         """)
     with col_info2:
         st.warning("""
         #### Klaster 1 (Populer / Mass Tourism)
-        * **Karakteristik:** Memiliki **Rating Tinggi** dan **Jumlah Ulasan Sangat Banyak** (Ikonis).
-        * **Kondisi Lapangan:** Destinasi utama yang sudah terkenal luas (Contoh: Malioboro, Prambanan).
+        * **Karakteristik:** Memiliki Rating Tinggi dan didukung oleh Jumlah Ulasan yang Sangat Masif (mencapai ribuan hingga puluhan ribu).
+        * **Logika:** Objek wisata diletakkan di klaster ini karena titik datanya mendekati pusat gravitasi Mass Tourism. Banyaknya jumlah ulasan menjadi bukti otentik bahwa tempat ini merupakan magnet utama pariwisata daerah yang menghasilkan perputaran ekonomi tinggi dan volume kunjungan yang padat.
         * **Rekomendasi Strategis:** Fokus pada manajemen pelayanan alur massa dan perawatan fasilitas fisik, bukan lagi pada promosi agresif.
         """)
